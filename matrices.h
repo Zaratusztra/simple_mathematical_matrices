@@ -19,6 +19,7 @@ public:
     Matrix();
     Matrix(unsigned int m, unsigned int n);
     Matrix(unsigned int m, unsigned int n, DataType v);
+    Matrix(unsigned int m, unsigned int n, DataType **array);
     Matrix(const Matrix<DataType>& M);
     ~Matrix();
     DataType get_val(unsigned int i, unsigned int j) const;
@@ -72,45 +73,6 @@ void Matrix<DataType>::fill_values_array_with(DataType val)
 }
 
 template <typename DataType>
-Matrix<DataType>::Matrix()
-{
-    values=nullptr;
-    size_m = 2;
-    size_n = 2;
-    create_values_array();
-    fill_values_array_with(DataType(0));
-}
-
-template <typename DataType>
-Matrix<DataType>::Matrix(unsigned int m, unsigned int n) : size_m(m), size_n(n)
-{
-    values=nullptr;
-    create_values_array();
-    fill_values_array_with(DataType(0));
-}
-
-template <typename DataType>
-Matrix<DataType>::Matrix(unsigned int m, unsigned int n, DataType v) : size_m(m), size_n(n)
-{
-    create_values_array();
-    fill_values_array_with(v);
-}
-
-template <typename DataType>
-Matrix<DataType>::Matrix(const Matrix<DataType>& M) : size_m(M.size_m), size_n(M.size_n)
-{
-    for(unsigned int i = 0; i < size_m; i++)
-        for(unsigned int j = 0; j < size_m; j++)
-            values[i][j]=M.get_val(i,j);
-}
-
-template <typename DataType>
-Matrix<DataType>::~Matrix()
-{
-    delete_values_array();
-}
-
-template <typename DataType>
 DataType Matrix<DataType>::get_val(unsigned int i, unsigned int j) const
 {
     if(i < size_m && j < size_n)
@@ -134,6 +96,49 @@ void Matrix<DataType>::set_val(unsigned int i, unsigned int j, DataType new_val)
     {
         throw "Matrix index out of scope!";
     }
+}
+
+template <typename DataType>
+Matrix<DataType>::Matrix()
+{
+    size_m = 2;
+    size_n = 2;
+    create_values_array();
+    fill_values_array_with(DataType(0));
+}
+
+template <typename DataType>
+Matrix<DataType>::Matrix(unsigned int m, unsigned int n) : size_m(m), size_n(n)
+{
+    create_values_array();
+    fill_values_array_with(DataType(0));
+}
+
+template <typename DataType>
+Matrix<DataType>::Matrix(unsigned int m, unsigned int n, DataType v) : size_m(m), size_n(n)
+{
+    create_values_array();
+    fill_values_array_with(v);
+}
+
+template <typename DataType>
+Matrix<DataType>::Matrix(const Matrix<DataType>& M) : size_m(M.size_m), size_n(M.size_n)
+{
+    for(unsigned int i = 0; i < size_m; i++)
+        for(unsigned int j = 0; j < size_m; j++)
+            values[i][j]=M.get_val(i,j);
+}
+
+template <typename DataType>
+Matrix<DataType>::Matrix(unsigned int m, unsigned int n, DataType **array)
+{
+    
+}
+
+template <typename DataType>
+Matrix<DataType>::~Matrix()
+{
+    delete_values_array();
 }
 
 template <typename DataType>
