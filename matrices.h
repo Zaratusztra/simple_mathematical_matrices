@@ -20,13 +20,12 @@ public:
     Matrix(unsigned int m, unsigned int n);
     Matrix(unsigned int m, unsigned int n, DataType v);
     Matrix(unsigned int m, unsigned int n, DataType **array);
-    Matrix(const Matrix<DataType>& M);
+    Matrix(const Matrix<DataType>& M); // A copy constructor
     ~Matrix();
     DataType get_val(unsigned int i, unsigned int j) const;
     void set_val(unsigned int i, unsigned int j, DataType new_val);
     std::string str_repr() const; // This is really stupid, I know. Only for learning purpouses :P
     DataType det();
-    //Matrix(Matrix & M); // A copy constructor
 
     Matrix<DataType>& operator=(const Matrix<DataType>& M);
     template <typename Type>
@@ -122,21 +121,21 @@ Matrix<DataType>::Matrix(unsigned int m, unsigned int n, DataType v) : size_m(m)
 }
 
 template <typename DataType>
-Matrix<DataType>::Matrix(const Matrix<DataType>& M) : size_m(M.size_m), size_n(M.size_n)
-{
-    create_values_array();
-    for(unsigned int i = 0; i < size_m; i++)
-        for(unsigned int j = 0; j < size_n; j++)
-            values[i][j]=M.get_val(i,j);
-}
-
-template <typename DataType>
 Matrix<DataType>::Matrix(unsigned int m, unsigned int n, DataType **array) : size_m(m), size_n(n)
 {
     create_values_array();
     for(unsigned int i = 0; i < size_m; i++)
         for(unsigned int j = 0; j < size_n; j++)
             values[i][j]=array[i][j];
+}
+
+template <typename DataType>
+Matrix<DataType>::Matrix(const Matrix<DataType>& M) : size_m(M.size_m), size_n(M.size_n)
+{
+    create_values_array();
+    for(unsigned int i = 0; i < size_m; i++)
+        for(unsigned int j = 0; j < size_n; j++)
+            values[i][j]=M.get_val(i,j);
 }
 
 template <typename DataType>
