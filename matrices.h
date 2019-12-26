@@ -124,8 +124,9 @@ Matrix<DataType>::Matrix(unsigned int m, unsigned int n) : size_m(m), size_n(n)
 template <typename DataType>
 Matrix<DataType>::Matrix(const Matrix<DataType>& M) : size_m(M.size_m), size_n(M.size_n)
 {
+    create_values_array();
     for(unsigned int i = 0; i < size_m; i++)
-        for(unsigned int j = 0; j < size_m; j++)
+        for(unsigned int j = 0; j < size_n; j++)
             values[i][j]=M.get_val(i,j);
 }
 
@@ -134,7 +135,7 @@ Matrix<DataType>::Matrix(unsigned int m, unsigned int n, DataType **array) : siz
 {
     create_values_array();
     for(unsigned int i = 0; i < size_m; i++)
-        for(unsigned int j = 0; j < size_m; j++)
+        for(unsigned int j = 0; j < size_n; j++)
             values[i][j]=array[i][j];
 }
 
