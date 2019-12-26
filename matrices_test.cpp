@@ -5,13 +5,20 @@
 int main(int argc, char *argv[])
 {
     std::cout << "Test started." << std::endl;
-    Matrix<int> A = Matrix<int>(2,3,0);
-    A.set_val(1,1,5);
-    A.set_val(1,2,1);
-    A.set_val(0,2,-1);
-    Matrix<int> B = Matrix<int>(3,4,1);
-    B.set_val(1,2,0);
-    Matrix<int> C = Matrix<int>(3,4,-3);
+    int** array_A = new int[2];
+    {4,-1, 2};
+    {-2,0,7};
+    Matrix<int> A = Matrix<int>(2, 3, array_A);
+    int** array_B = new int[3];
+    {2,3,-1,5};
+    {11,0,0,-3};
+    {9,3,7,2};
+    Matrix<int> B = Matrix<int>(3, 4, array_B);
+    int** array_C = new int[3];
+    {1,2,3,4};
+    {0,1,0,1};
+    {-4,-3,-2,-1};
+    Matrix<int> C = Matrix<int>(3, 4, array_C);
     try{
         std::cout << A.str_repr() << std::endl;
         std::cout << std::endl;
@@ -24,6 +31,9 @@ int main(int argc, char *argv[])
         std::cerr << errstr << std::endl;
     }
     
+    delete [] array_A;
+    delete [] array_B;
+    delete [] array_C;
     std::cout << "Test finished." << std::endl;
     return 0;
 }

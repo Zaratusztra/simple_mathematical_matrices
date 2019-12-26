@@ -18,7 +18,7 @@ public:
     const unsigned int size_n;
     Matrix();
     Matrix(unsigned int m, unsigned int n);
-    Matrix(unsigned int m, unsigned int n, DataType v);
+    //Matrix(unsigned int m, unsigned int n, DataType v);
     Matrix(unsigned int m, unsigned int n, DataType **array);
     Matrix(const Matrix<DataType>& M);
     ~Matrix();
@@ -114,12 +114,12 @@ Matrix<DataType>::Matrix(unsigned int m, unsigned int n) : size_m(m), size_n(n)
     fill_values_array_with(DataType(0));
 }
 
-template <typename DataType>
-Matrix<DataType>::Matrix(unsigned int m, unsigned int n, DataType v) : size_m(m), size_n(n)
-{
-    create_values_array();
-    fill_values_array_with(v);
-}
+// template <typename DataType>
+// Matrix<DataType>::Matrix(unsigned int m, unsigned int n, DataType v) : size_m(m), size_n(n)
+// {
+//     create_values_array();
+//     fill_values_array_with(v);
+// }
 
 template <typename DataType>
 Matrix<DataType>::Matrix(const Matrix<DataType>& M) : size_m(M.size_m), size_n(M.size_n)
@@ -130,9 +130,12 @@ Matrix<DataType>::Matrix(const Matrix<DataType>& M) : size_m(M.size_m), size_n(M
 }
 
 template <typename DataType>
-Matrix<DataType>::Matrix(unsigned int m, unsigned int n, DataType **array)
+Matrix<DataType>::Matrix(unsigned int m, unsigned int n, DataType **array) : size_m(m), size_n(n)
 {
-    
+    create_values_array();
+    for(unsigned int i = 0; i < size_m; i++)
+        for(unsigned int j = 0; j < size_m; j++)
+            values[i][j]=array[i][j];
 }
 
 template <typename DataType>
