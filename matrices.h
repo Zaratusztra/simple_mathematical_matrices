@@ -24,7 +24,7 @@ public:
     ~Matrix();
     DataType get_val(unsigned int i, unsigned int j) const;
     void set_val(unsigned int i, unsigned int j, DataType new_val);
-    std::string str_repr() const;
+    std::string str_repr() const; // This is really stupid, I know. Only for learning purpouses :P
     DataType det();
     //Matrix(Matrix & M); // A copy constructor
 
