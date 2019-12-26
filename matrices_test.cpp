@@ -39,10 +39,15 @@ int main(int argc, char *argv[])
     delete [] tab; tab = nullptr;
 
     
-    tab = random_2d_array(4,2);
-    Matrix<int> B = Matrix<int>(4,2,tab);
+    tab = random_2d_array(3,5);
+    Matrix<int> B = Matrix<int>(3,5,tab);
     delete [] tab;
 
+    Matrix<int> I = Matrix<int>(3,3,0);
+    for(int i = 0; i < 3; i++)
+        I.set_val(i,2-i,1);
+
+    std::cout << "I=\n" << I.str_repr() << std::endl;
     std::cout << "A=\n" << A.str_repr() << std::endl;
     std::cout << "B=\n" << B.str_repr() << std::endl;
     try{
