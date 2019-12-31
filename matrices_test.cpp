@@ -4,6 +4,8 @@
 
 #include "matrices.h"
 
+using zrts::Matrix;
+
 int ** random_2d_array(int M, int N)
 {
     int ** tab = new int*[M];
@@ -47,18 +49,21 @@ int main(int argc, char *argv[])
     for(int i = 0; i < 3; i++)
         I.set_val(i,2-i,1);
 
-    std::cout << "I=\n" << I.str_repr() << std::endl;
-    std::cout << "A=\n" << A.str_repr() << std::endl;
-    std::cout << "B=\n" << B.str_repr() << std::endl;
     try{
+        
+        std::cout << "I=\n" << I.str_repr() << std::endl;
+        std::cout << "A=\n" << A.str_repr() << std::endl;
+        std::cout << "B=\n" << B.str_repr() << std::endl;
+
         std::cout << "A*B=\n" << (A*B).str_repr() << std::endl;
+        
     }catch(char const* err_str)
     {
         std::cerr << err_str << std::endl;
     }
     
 
-    delete [] tab;    
+    delete [] tab;
     std::cout << "Test finished." << std::endl;
     return 0;
 }

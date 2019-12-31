@@ -1,8 +1,15 @@
-#ifndef _ZARATUSTRA_MATRICES_
-#define _ZARATUSTRA_MATRICES_
+/*
+ * This is highly unprofessional implementation of mathematical matrix.
+ * Work In Progress.
+ *                  ~Ziemowit Wójcicki.
+ */
 
-#include <iostream>
+#ifndef _zrts_MATRICES_
+#define _zrts_MATRICES_
+
 #include <string>
+
+namespace zrts{
 
 template <typename DataType>
 class Matrix
@@ -41,19 +48,6 @@ void Matrix<DataType>::create_values_array()
     for (unsigned i = 0; i < size_m; i++)
     {
         values[i]=new DataType[size_n];
-    }
-}
-
-template <typename DataType>
-void Matrix<DataType>::delete_values_array()
-{
-    if(values != nullptr)
-    {
-        for (unsigned i = 0; i < size_m; i++)
-        {
-            delete values[i];
-        }
-        delete values;
     }
 }
 
@@ -139,6 +133,22 @@ Matrix<DataType>::Matrix(const Matrix<DataType>& M) : size_m(M.size_m), size_n(M
 }
 
 template <typename DataType>
+void Matrix<DataType>::delete_values_array()
+{
+    if(values != nullptr)
+    {
+        for (unsigned i = 0; i < size_m; i++)
+        {
+            delete [] values[i];
+        }
+        delete [] values;
+    }
+
+    //  if(values!=nullptr)
+    //      delete [] values;
+}
+
+template <typename DataType>
 Matrix<DataType>::~Matrix()
 {
     delete_values_array();
@@ -205,6 +215,9 @@ Matrix<Type>& operator+(const Matrix<Type>& A, const Matrix<Type>& B)
 template <typename Type>
 Matrix<Type>& operator*(Matrix<Type>& A, Matrix<Type>& B)
 {
+    /* 
+    *  I will probably try to implement Volker Strassen's algorithm at some point. This will be fun... :P
+    */
     if(A.size_n != B.size_m)
     {
         throw "Incompatibile sizes of given matrices.";
@@ -231,7 +244,13 @@ Matrix<Type>& operator*(Matrix<Type>& A, Matrix<Type>& B)
 template <typename DataType>
 DataType Matrix<DataType>::det()
 {
-    return DataType(-1);
+    /* 
+    *  Realistically I should implement some better algorithm here, but I will not.
+    */
+   throw "Function not implemented yet!";
+   return DataType(-1);
 }
+
+} // zrts
 
 #endif
