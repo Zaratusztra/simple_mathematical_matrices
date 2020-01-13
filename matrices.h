@@ -4,12 +4,12 @@
  *                  ~Ziemowit Wójcicki.
  */
 
-#ifndef _zrts_MATRICES_
-#define _zrts_MATRICES_
+#ifndef _zst_MATRICES_
+#define _zst_MATRICES_
 
 #include <string>
 
-namespace zrts{
+namespace zst{
 
 template <typename DataType>
 class Matrix
@@ -27,7 +27,7 @@ public:
     Matrix(unsigned int m, unsigned int n);
     Matrix(unsigned int m, unsigned int n, DataType v);
     Matrix(unsigned int m, unsigned int n, DataType **array);
-    Matrix(const Matrix<DataType>& M); // A copy constructor
+    Matrix(const Matrix<DataType> &M); // A copy constructor
     ~Matrix();
     DataType get_val(unsigned int i, unsigned int j) const;
     void set_val(unsigned int i, unsigned int j, DataType new_val);
@@ -251,6 +251,6 @@ DataType Matrix<DataType>::det()
    return DataType(-1);
 }
 
-} // zrts
+} // zst
 
 #endif

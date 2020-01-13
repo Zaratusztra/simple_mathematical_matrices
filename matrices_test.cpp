@@ -4,7 +4,7 @@
 
 #include "matrices.h"
 
-using zrts::Matrix;
+using zst::Matrix;
 
 int ** random_2d_array(int M, int N)
 {
